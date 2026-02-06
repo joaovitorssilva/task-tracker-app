@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --color-bg: #252628;
+  --color-bgLight: #5B5B5B;
+  --color-bgDark: #4C4444;
+  --color-line: #4E4E4E;
+  --color-success: #029008;
+  --color-danger: #AF0505;
+  --color-gray: #646570;
+  --color-redLight: #DDA9A9;
+  --color-lowPrio: #46F7B7;
+  --color-lowPrioText: #096343;
+  --color-mediumPrio: #F5EB88;
+  --color-mediumPrioText: #653408;
+  --color-highPrio: #FFA775;
+  --color-highPrioText: #702D08;
+  --color-veryHighPrio: #F27F77;
+  --color-veryHighPrioText: #5F0F0B;
+  --color-options-button-hover: #4E4E4E;
+  --color-options-button-pressed: #343333 --font-family-poppins: 'Poppins', system-ui, sans-serif;
+  --color-date-text: #646570;
+}
