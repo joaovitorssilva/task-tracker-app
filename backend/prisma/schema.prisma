@@ -1,0 +1,35 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgres"
+}
+
+model List {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  tasks Task[]
+}
+
+model Task {
+  id                 Int       @id @default(autoincrement())
+  title              String
+  description        String?
+  priority           priority
+  expectedFinishDate DateTime?
+  finishDate         DateTime?
+  listId             Int
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  list               List      @relation(fields: [listId], references: [id])
+}
+
+enum priority {
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
