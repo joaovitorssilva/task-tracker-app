@@ -1,10 +1,27 @@
 @import "tailwindcss";
 @import "tailwindcss/utilities.css" layer(utilities);
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.15s ease-out;
+}
+
 @theme {
   --color-bg: #252628;
   --color-bgLight: #5B5B5B;
   --color-bgDark: #4C4444;
+  --color-bgLateTask: linear-gradient(to right, #553434, #381D1D);
   --color-line: #4E4E4E;
   --color-success: #029008;
   --color-danger: #AF0505;
@@ -19,6 +36,7 @@
   --color-veryHighPrio: #F27F77;
   --color-veryHighPrioText: #5F0F0B;
   --color-options-button-hover: #4E4E4E;
-  --color-options-button-pressed: #343333 --font-family-poppins: 'Poppins', system-ui, sans-serif;
+  --color-options-button-pressed: #343333;
+  --font-family-poppins: 'Poppins', system-ui, sans-serif;
   --color-date-text: #646570;
 }

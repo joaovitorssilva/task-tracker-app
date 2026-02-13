@@ -1,16 +1,15 @@
-import ListComponent from "./ListComponent";
 import { useState } from "react";
 import type { List } from "../types/api";
-import { createList, findListByName } from "../api/endpoints/Lists";
+import { createList } from "../api/endpoints/Lists";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+import { ListComponent } from "./ListComponent";
 
-const Board = ({
-  lists,
-  refetchLists,
-}: {
+interface BoardProps {
   lists: List[];
   refetchLists: () => Promise<void>;
-}) => {
+}
+
+export function Board({ lists, refetchLists }: BoardProps) {
   const [modal, setModal] = useState(false);
   const [listNameInput, setListNameInput] = useState("");
 
@@ -21,7 +20,6 @@ const Board = ({
 
   const closeModal = (e: React.MouseEvent) => {
     e.preventDefault();
-
     setModal(false);
   };
 
@@ -39,9 +37,8 @@ const Board = ({
       e.preventDefault();
 
       if (listNameInput.trim() === "") {
-
         return;
-      }
+      } 
 
       if (verifySameListName(listNameInput)) {
         return;
@@ -53,8 +50,7 @@ const Board = ({
 
       await createList(newList);
       setListNameInput("");
-      const createdList = await findListByName(newList.name);
-      lists.push(createdList);
+      await refetchLists();
       closeModal(e);
     } catch (err) {
       console.error(err);
@@ -62,7 +58,7 @@ const Board = ({
   };
 
   return (
-    <div className="bg-bg flex flex-row flex-nowrap gap-4 overflow-x-auto sm:pt-15 py-4  w-full pt-15">
+    <div className="bg-bg flex flex-col md:flex-row gap-4 overflow-x-auto p-8 min-h-screen w-full ">
       {lists.map((list) => (
         <ListComponent
           key={list.id}
@@ -72,7 +68,7 @@ const Board = ({
           refetchLists={refetchLists}
         />
       ))}
-      <div className="rounded-md 1flex flex-col gap-4 min-w-[300px] w-[300px] h-min shrink-0 relative top-2">
+      <div className="rounded-md flex flex-col gap-4 min-w-[300px] w-[300px] h-min shrink-0 relative top-2">
         <button
           onClick={(e) => openModal(e)}
           className="text-white w-full flex items-center gap-2 font-semibold text-sm p-2 rounded-xl hover:bg-options-button-hover transition duration-300 ease-out cursor-pointer"
@@ -115,6 +111,4 @@ const Board = ({
       )}
     </div>
   );
-};
-
-export default Board;
+}

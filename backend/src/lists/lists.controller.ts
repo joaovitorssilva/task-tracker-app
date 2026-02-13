@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, NotFoundException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  HttpCode,
+  NotFoundException,
+} from '@nestjs/common';
 import { ListsService } from './lists.service';
 import { CreateListDto } from './dto/create-list.dto';
 import { UpdateListDto } from './dto/update-list.dto';
@@ -20,14 +30,14 @@ export class ListsController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const list = await this.listsService.findOne(+id);
-    if(!list) throw new NotFoundException();
+    if (!list) throw new NotFoundException();
     return list;
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateListDto: UpdateListDto) {
     const list = await this.listsService.update(+id, updateListDto);
-    if(!list) throw new NotFoundException();
+    if (!list) throw new NotFoundException();
     return list;
   }
 
@@ -35,6 +45,6 @@ export class ListsController {
   @HttpCode(204)
   async remove(@Param('id') id: string) {
     const list = await this.listsService.remove(+id);
-    if(!list) throw new NotFoundException();
+    if (!list) throw new NotFoundException();
   }
 }

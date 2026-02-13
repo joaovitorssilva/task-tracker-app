@@ -11,7 +11,6 @@ export interface Task {
     listId: number;
     createdAt: string;
     updatedAt: string;
-    finished?: boolean;
 }
 
 export interface List {
@@ -20,10 +19,3 @@ export interface List {
     tasks: Task[];
 }
 
-export interface NewTaskProps {
-    title: string;
-    description: string;
-    priority: Priority;
-    expectedFinishDate: string | null;
-    listId: number;
-}

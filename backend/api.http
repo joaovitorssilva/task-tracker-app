@@ -21,7 +21,10 @@ Content-Type: application/json
 }
 
 ### list lits
-DELETE  http://localhost:8000/lists/2
+DELETE  http://localhost:8000/lists/10
+
+
+
 
 ### get tasks
 GET http://localhost:8000/tasks
@@ -38,7 +41,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8000/tasks/2
+DELETE http://localhost:8000/tasks/11
+
 
 
 ###

@@ -5,12 +5,12 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class TasksService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async create(createTaskDto: CreateTaskDto) {
-    await this.prisma.task.create({
+    return await this.prisma.task.create({
       data: createTaskDto,
-    })
+    });
   }
 
   async findAll() {
@@ -26,13 +26,13 @@ export class TasksService {
   async update(id: number, updateTaskDto: UpdateTaskDto) {
     return await this.prisma.task.update({
       where: { id },
-      data: updateTaskDto
-    })
+      data: updateTaskDto,
+    });
   }
 
   async remove(id: number) {
     return await this.prisma.task.delete({
-      where: { id }
-    })
+      where: { id },
+    });
   }
 }

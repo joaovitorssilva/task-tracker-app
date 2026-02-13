@@ -1,25 +1,37 @@
-import { IsDateString, IsEnum, IsIn, IsInt, isNotEmpty, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator";
-import { Priority } from "./priority.dto";
+import {
+  IsDateString,
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
+import { Priority } from './priority.dto';
 
 export class CreateTaskDto {
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
-  title: string
+  title: string;
 
   @IsString()
   @IsNotEmpty()
-  description?: string
+  description?: string;
 
   @IsEnum(Priority)
   @IsNotEmpty()
-  priority: Priority
-  
+  priority: Priority;
+
   @IsOptional()
   @IsDateString()
-  expectedFinishDate?: Date
+  expectedFinishDate?: Date;
+
+  @IsOptional()
+  @IsDateString()
+  finishDate?: Date | null;
 
   @IsInt()
   @IsNotEmpty()
-  listId: number
+  listId: number;
 }
