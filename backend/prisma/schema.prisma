@@ -8,10 +8,23 @@ datasource db {
   provider = "postgres"
 }
 
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lists     List[]
+  tasks     Task[]
+}
+
 model List {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  tasks Task[]
+  id     Int    @id @default(autoincrement())
+  name   String @unique
+  userId Int
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tasks  Task[]
 }
 
 model Task {
@@ -22,9 +35,11 @@ model Task {
   expectedFinishDate DateTime?
   finishDate         DateTime?
   listId             Int
+  userId             Int
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   list               List      @relation(fields: [listId], references: [id])
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum priority {
